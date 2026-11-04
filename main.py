@@ -20,8 +20,15 @@ async def main(request: Request):
             "messages": [{"role": "user", "content": user_text}],
         }
     )
-    print("ОШИБКА ОТ AIAI:", response.text)
-    answer = response.json()[0]["choices"][0]["message"]["content"]
+    try:
+    data = response.json()
+    if isinstance(data, list):
+        answer = data[0]["choices"][0]["message"]["content"]
+    else:
+        answer = data["choices"][0]["message"]["content"]
+except Exception as e:
+    print("ОШИБКА ПАРСИНГА:", e)
+    answer = "Извините, произошла ошибка при обработке ответа."
 
     return {
         "version": body["version"],
