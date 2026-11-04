@@ -11,6 +11,15 @@ DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 async def main(request: Request):
     body = await request.json()
     user_text = body["request"]["original_utterance"]
+    if not user_text or user_text.strip() == "":
+    return {
+        "version": body["version"],
+        "session": body["session"],
+        "response": {
+            "end_session": False,
+            "text": "Привет! Я готов к общению. Задай свой вопрос."
+        }
+    }
 
     response = requests.post(
         DEEPSEEK_API_URL,
