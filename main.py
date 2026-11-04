@@ -11,15 +11,16 @@ DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 async def main(request: Request):
     body = await request.json()
     user_text = body["request"]["original_utterance"]
+
     if not user_text or user_text.strip() == "":
-    return {
-        "version": body["version"],
-        "session": body["session"],
-        "response": {
-            "end_session": False,
-            "text": "Привет! Я готов к общению. Задай свой вопрос."
+        return {
+            "version": body["version"],
+            "session": body["session"],
+            "response": {
+                "end_session": False,
+                "text": "Привет! Я готов к общению. Задай свой вопрос."
+            }
         }
-    }
 
     response = requests.post(
         DEEPSEEK_API_URL,
@@ -38,7 +39,7 @@ async def main(request: Request):
             answer = data["choices"][0]["message"]["content"]
     except Exception as e:
         print("ОШИБКА ПАРСИНГА:", e)
-        print("СЫРОЙ ОТВЕТ:",response.text)
+        print("СЫРОЙ ОТВЕТ:", response.text)
         answer = "Извините, произошла ошибка при обработке ответа."
 
     return {
