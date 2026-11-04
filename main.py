@@ -21,7 +21,7 @@ async def main(request: Request):
         }
     )
     print("ОШИБКА ОТ AIAI:", response.text)
-    answer = response.json()["choices"][0]["message"]["content"]
+    answer = response.json()[0]["choices"][0]["message"]["content"]
 
     return {
         "version": body["version"],
