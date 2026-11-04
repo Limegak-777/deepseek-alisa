@@ -36,7 +36,7 @@ async def main(request: Request):
             json={
                 "model": "deepseek-v4-flash", # Самая дешевая модель
                 "messages": [{"role": "user", "content": user_text}],
-                "max_tokens": 1000 # Увеличили лимит, чтобы ответы были длиннее
+                "max_tokens": 200 # Увеличили лимит, чтобы ответы были длиннее
             },
             timeout=4 
         )
