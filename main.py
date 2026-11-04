@@ -29,6 +29,7 @@ async def main(request: Request):
             answer = data["choices"][0]["message"]["content"]
     except Exception as e:
         print("ОШИБКА ПАРСИНГА:", e)
+        print("СЫРОЙ ОТВЕТ:",response.text)
         answer = "Извините, произошла ошибка при обработке ответа."
 
     return {
