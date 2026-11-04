@@ -20,15 +20,16 @@ async def main(request: Request):
             "messages": [{"role": "user", "content": user_text}],
         }
     )
+
     try:
-    data = response.json()
-    if isinstance(data, list):
-        answer = data[0]["choices"][0]["message"]["content"]
-    else:
-        answer = data["choices"][0]["message"]["content"]
-except Exception as e:
-    print("ОШИБКА ПАРСИНГА:", e)
-    answer = "Извините, произошла ошибка при обработке ответа."
+        data = response.json()
+        if isinstance(data, list):
+            answer = data[0]["choices"][0]["message"]["content"]
+        else:
+            answer = data["choices"][0]["message"]["content"]
+    except Exception as e:
+        print("ОШИБКА ПАРСИНГА:", e)
+        answer = "Извините, произошла ошибка при обработке ответа."
 
     return {
         "version": body["version"],
