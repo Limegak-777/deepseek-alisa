@@ -20,6 +20,7 @@ async def main(request: Request):
             "messages": [{"role": "user", "content": user_text}],
         }
     )
+    print("ОШИБКА ОТ AIAI:", response.text)
     answer = response.json()["choices"][0]["message"]["content"]
 
     return {
