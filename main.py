@@ -34,7 +34,7 @@ async def main(request: Request):
             DEEPSEEK_API_URL,
             headers={"Authorization": f"Bearer {DEEPSEEK_API_KEY}"},
             json={
-                "model": "deepseek-v4-flash", # Самая дешевая модель
+                "model": "gpt-4o-mini", # Самая дешевая модель
                 "messages": [{"role": "user", "content": user_text}],
                 "max_tokens": 200 # Увеличили лимит, чтобы ответы были длиннее
             },
